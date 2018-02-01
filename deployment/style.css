@@ -1,0 +1,358 @@
+body{
+    background-image: url("resources/page/page_background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    --content-width: 1000px;
+    --banner-height: 125px;
+    --whiteish: #D6EFE7;
+    --blackish: #424242;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#banner_container {
+    position: absolute;
+    width: 100%;
+    height: var(--banner-height);
+    background-color: var(--blackish);
+    padding: 0;
+    left: 0;
+    top: 0;
+    margin: 0;
+    text-align: center;
+}
+
+#banner_img {
+    position: relative;
+    width: var(--content-width);
+    height: auto;
+    margin: auto;
+    max-width: 100%;
+}
+
+#content_boundary {
+    position: fixed;
+    width: var(--content-width);
+    height: 100%;
+    background-color: rgba(37, 138, 94, 0.7);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-left-width: 20px;
+    border-right-width: 20px;
+    border-left-color: var(--blackish);
+    border-right-color: var(--blackish);
+    border-left-style: solid;
+    border-right-style: solid;
+    z-index: -1;
+}
+
+#contents {
+    position: relative;
+    width: var(--content-width);
+    background: none;
+    margin: auto;
+    top: var(--banner-height);
+    padding-top: 20px;
+}
+
+
+#messages_container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    color: #D6EFE7;
+}
+
+#messages {
+    position: relative;
+    height: 30ch;
+    width: 85%;
+    overflow-y: scroll;
+    overflow-x: auto;
+    white-space: normal;
+    border: 5px solid var(--whiteish);
+    background-color: rgba(66, 66, 66, 0.8);
+    margin-top: 0.3rem;
+    font-size: 1rem;
+    color: var(--whiteish);
+    line-height: 1.1rem;
+    font-family: "Trebuchet MS", Helvetica, sans-serif; 
+}
+
+
+#grid_container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+#game_grid {
+    text-align: center;
+}
+
+#progress_container {
+    position: relative;
+    font-size: 0.5rem;
+    letter-spacing: 0;
+    word-spacing: -0.5em;
+    font-weight: 0;   
+    width: 57%;
+    height: 2rem;
+    border: 0.2rem solid var(--blackish);
+    border-radius: 2rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    left: 13%;
+}
+
+#progress_background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--whiteish);
+    z-index: 0;
+}
+
+#progress_bar {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: #42AD42;
+    z-index: 1;
+}
+
+#progress_foreground {
+    position: absolute;
+    background: none;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 2rem;
+    padding-left: 1em;
+    color: black;
+    z-index: 2;
+}
+
+
+#about_container {
+    font-family: "Trebuchet MS", Helvetica, sans-serif; 
+    padding: 2rem;
+    color: var(--whiteish);
+    font-size: 1.2rem;
+}
+
+#about_container li {
+    padding-bottom: 0.8rem;
+}
+
+
+/* action button */
+.gg_button {
+    position: absolute;
+    background: none;
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 0.2rem 0.05rem var(--blackish);
+    user-select: none;
+}
+
+.gg_button:hover {
+    cursor: pointer;
+}
+
+
+
+.gg_button img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+#action_button {
+    left: 77.7%;
+    top: 84.9%;
+    width: 22.2%;
+    height: 11.7%;
+}
+    
+
+.gg_button_text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-top: 14%;
+    padding-left: 3%;
+    margin: 0;
+    text-align: center;
+    z-index: 2;
+}
+
+.menu_button {
+    font-size: 0.8rem;
+    left: 79.6%;
+    width: 18.5%;
+    height: 7.2%;
+    color: var(--blackish);
+    text-shadow: none;
+    font-weight: boldest;
+}
+
+.bactive { 
+    font-size: calc(0.95*0.8rem);
+    left: calc(1.005*79.6%);
+    width: calc(0.95*18.5%);
+    height: calc(0.95*7.2%);
+}
+
+.bfocus {
+    color: white;
+}
+
+#input_button { top: 10.8%; }
+#chances_button { top: 19.7%; }
+#solutions_button { top: 28.9%; }
+
+/* grid elements */
+#grid_container {
+    position: relative;
+    width: 800px;
+    height: 631px;
+}
+
+#grid_background {
+    position: absolute;
+    min-width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+#grid_container img {
+    position: absolute;
+    width: 8.47%;
+    height:auto;
+    z-index: 1;
+}
+
+#grid_container .coin_mask {
+    position: absolute;
+    width: calc(8.47%*0.5);
+    height: 10.7%;
+    background-image: url("resources/chances/coin.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    z-index: 2;
+    border-right: 1px solid black;
+    box-sizing: border-box;
+}
+
+#grid_container .input_cell:hover {
+    filter: brightness(120%);
+    cursor: pointer;
+}
+
+#grid_container .input_cell:active {
+    transform: scale(0.95);
+}
+
+#grid_container .tabcontent { display: none; }
+
+#grid_container .cell[row="0"] { top: 9.3%; }
+#grid_container .cell[row="1"] { top: 24.9%; }
+#grid_container .cell[row="2"] { top: 40.6%; }
+#grid_container .cell[row="3"] { top: 56.2%; }
+#grid_container .cell[row="4"] { top: 71.8%; }
+#grid_container .cell[col="0"] { left: 6.1%; }
+#grid_container .cell[col="1"] { left: 18.4%; }
+#grid_container .cell[col="2"] { left: 30.7%; }
+#grid_container .cell[col="3"] { left: 43.1%; }
+#grid_container .cell[col="4"] { left: 55.4%; }
+
+#grid_container .gsum {
+    position: absolute;
+    height: 3.8%;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: none;
+    border: none;
+    color: #424242;
+    font-size: 1.5rem;
+    text-align: right;
+}
+
+#grid_container .gsum:focus {
+    outline: none;
+}
+
+/* input grid row and column sums */
+#grid_container .multsum { width: 2.5em; }
+#grid_container .voltsum { width: 1.5em; }
+#grid_container .mr { left: 70.9%; }
+#grid_container .mc { top: 87.2%; }
+#grid_container .vr { left: 73.6%; }
+#grid_container .vc { top: 93.3%; }
+
+#ggmr0 { top: 9.1%; }
+#ggmr1 { top: 24.7%; }
+#ggmr2 { top: 40.3%; }
+#ggmr3 { top: 55.9%; }
+#ggmr4 { top: 71.6%; }
+
+#ggvr0 { top: 15.2%; }
+#ggvr1 { top: 30.8%; }
+#ggvr2 { top: 46.8%; }
+#ggvr3 { top: 62.0%; }
+#ggvr4 { top: 77.6%; }
+
+#ggmc0 { left: 9.2%; }
+#ggmc1 { left: 21.5%; }
+#ggmc2 { left: 33.6%; }
+#ggmc3 { left: 46.1%; }
+#ggmc4 { left: 58.5%; }
+
+#ggvc0 { left: 12.1%; }
+#ggvc1 { left: 24.1%; }
+#ggvc2 { left: 36.8%; }
+#ggvc3 { left: 48.7%; }
+#ggvc4 { left: 61.1%; }
+
+
+/* chances grid row and column sums */
+#grid_container .cmr { left: 69.0%; }
+#grid_container .cmc { top: 87.2%; }
+#grid_container .cvr { left: 72.1%; }
+#grid_container .cvc { top: 93.3%; }
+
+#cgmr0 { top: 9.1%; }
+#cgmr1 { top: 24.7%; }
+#cgmr2 { top: 40.3%; }
+#cgmr3 { top: 55.9%; }
+#cgmr4 { top: 71.6%; }
+ 
+#cgvr0 { top: 15.2%; }
+#cgvr1 { top: 30.8%; }
+#cgvr2 { top: 46.8%; }
+#cgvr3 { top: 62.0%; }
+#cgvr4 { top: 77.6%; }
+ 
+#cgmc0 { left: 7.3%; }
+#cgmc1 { left: 19.6%; }
+#cgmc2 { left: 31.7%; }
+#cgmc3 { left: 44.2%; }
+#cgmc4 { left: 56.6%; }
+ 
+#cgvc0 { left: 10.6%; }
+#cgvc1 { left: 22.6%; }
+#cgvc2 { left: 35.3%; }
+#cgvc3 { left: 47.2%; }
+#cgvc4 { left: 59.6%; }

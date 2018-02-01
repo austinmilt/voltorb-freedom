@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Voltorb Flip Solver</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <script src="scripts/main.js"></script>
+        <script src="scripts/worker.js"></script>
+    </head>
+
+    <body>
+        <div id="banner_container">
+            <img src="resources/page/banner.png" alt="Voltorb Freedom!" id="banner_img">
+        </div>
+        <div id="content_boundary"></div>
+        <div id="contents">
+            <div id="grid_container">
+                <img src="resources/page/grid_background.png" alt="Game Grid" id="grid_background">
+                
+                <!-- input grid tab -->
+                <div id="input_tab" class="tabcontent">
+                    <img id="gg00" src="resources/input/UNKNOWN.png" class="cell input_cell" row="0" col="0">
+                    <img id="gg01" src="resources/input/UNKNOWN.png" class="cell input_cell" row="0" col="1">
+                    <img id="gg02" src="resources/input/UNKNOWN.png" class="cell input_cell" row="0" col="2">
+                    <img id="gg03" src="resources/input/UNKNOWN.png" class="cell input_cell" row="0" col="3">
+                    <img id="gg04" src="resources/input/UNKNOWN.png" class="cell input_cell" row="0" col="4">
+                    <img id="gg10" src="resources/input/UNKNOWN.png" class="cell input_cell" row="1"  col="0">
+                    <img id="gg11" src="resources/input/UNKNOWN.png" class="cell input_cell" row="1"  col="1">
+                    <img id="gg12" src="resources/input/UNKNOWN.png" class="cell input_cell" row="1"  col="2">
+                    <img id="gg13" src="resources/input/UNKNOWN.png" class="cell input_cell" row="1"  col="3">
+                    <img id="gg14" src="resources/input/UNKNOWN.png" class="cell input_cell" row="1"  col="4">
+                    <img id="gg20" src="resources/input/UNKNOWN.png" class="cell input_cell" row="2"  col="0">
+                    <img id="gg21" src="resources/input/UNKNOWN.png" class="cell input_cell" row="2"  col="1">
+                    <img id="gg22" src="resources/input/UNKNOWN.png" class="cell input_cell" row="2"  col="2">
+                    <img id="gg23" src="resources/input/UNKNOWN.png" class="cell input_cell" row="2"  col="3">
+                    <img id="gg24" src="resources/input/UNKNOWN.png" class="cell input_cell" row="2"  col="4">
+                    <img id="gg30" src="resources/input/UNKNOWN.png" class="cell input_cell" row="3"  col="0">
+                    <img id="gg31" src="resources/input/UNKNOWN.png" class="cell input_cell" row="3"  col="1">
+                    <img id="gg32" src="resources/input/UNKNOWN.png" class="cell input_cell" row="3"  col="2">
+                    <img id="gg33" src="resources/input/UNKNOWN.png" class="cell input_cell" row="3"  col="3">
+                    <img id="gg34" src="resources/input/UNKNOWN.png" class="cell input_cell" row="3"  col="4">
+                    <img id="gg40" src="resources/input/UNKNOWN.png" class="cell input_cell" row="4"  col="0">
+                    <img id="gg41" src="resources/input/UNKNOWN.png" class="cell input_cell" row="4"  col="1">
+                    <img id="gg42" src="resources/input/UNKNOWN.png" class="cell input_cell" row="4"  col="2">
+                    <img id="gg43" src="resources/input/UNKNOWN.png" class="cell input_cell" row="4"  col="3">
+                    <img id="gg44" src="resources/input/UNKNOWN.png" class="cell input_cell" row="4"  col="4">
+                    <input id="ggmr0" type="number" value="0" class="gsum multsum mr" max="15" min="0" step="1">
+                    <input id="ggvr0" type="number" value="0" class="gsum voltsum vr" max="5" min="0" step="1">
+                    <input id="ggmr1" type="number" value="0" class="gsum multsum mr" max="15" min="0" step="1">
+                    <input id="ggvr1" type="number" value="0" class="gsum voltsum vr" max="5" min="0" step="1">
+                    <input id="ggmr2" type="number" value="0" class="gsum multsum mr" max="15" min="0" step="1">
+                    <input id="ggvr2" type="number" value="0" class="gsum voltsum vr" max="5" min="0" step="1">
+                    <input id="ggmr3" type="number" value="0" class="gsum multsum mr" max="15" min="0" step="1">
+                    <input id="ggvr3" type="number" value="0" class="gsum voltsum vr" max="5" min="0" step="1">
+                    <input id="ggmr4" type="number" value="0" class="gsum multsum mr" max="15" min="0" step="1">
+                    <input id="ggvr4" type="number" value="0" class="gsum voltsum vr" max="5" min="0" step="1">
+                    <input id="ggmc0" type="number" value="0" class="gsum multsum mc" max="15" min="0" step="1">
+                    <input id="ggvc0" type="number" value="0" class="gsum voltsum vc" max="5" min="0" step="1">
+                    <input id="ggmc1" type="number" value="0" class="gsum multsum mc" max="15" min="0" step="1">
+                    <input id="ggvc1" type="number" value="0" class="gsum voltsum vc" max="5" min="0" step="1">
+                    <input id="ggmc2" type="number" value="0" class="gsum multsum mc" max="15" min="0" step="1">
+                    <input id="ggvc2" type="number" value="0" class="gsum voltsum vc" max="5" min="0" step="1">
+                    <input id="ggmc3" type="number" value="0" class="gsum multsum mc" max="15" min="0" step="1">
+                    <input id="ggvc3" type="number" value="0" class="gsum voltsum vc" max="5" min="0" step="1">
+                    <input id="ggmc4" type="number" value="0" class="gsum multsum mc" max="15" min="0" step="1">
+                    <input id="ggvc4" type="number" value="0" class="gsum voltsum vc" max="5" min="0" step="1">
+                </div>
+                
+                <!-- chances tab -->
+                <div id="chances_tab" class="tabcontent">
+                    <img id="cg00" src="resources/chances/voltorb.png" class="cell chances_cell" row="0" col="0">
+                    <img id="cg01" src="resources/chances/voltorb.png" class="cell chances_cell" row="0" col="1">
+                    <img id="cg02" src="resources/chances/voltorb.png" class="cell chances_cell" row="0" col="2">
+                    <img id="cg03" src="resources/chances/voltorb.png" class="cell chances_cell" row="0" col="3">
+                    <img id="cg04" src="resources/chances/voltorb.png" class="cell chances_cell" row="0" col="4">
+                    <img id="cg10" src="resources/chances/voltorb.png" class="cell chances_cell" row="1"  col="0">
+                    <img id="cg11" src="resources/chances/voltorb.png" class="cell chances_cell" row="1"  col="1">
+                    <img id="cg12" src="resources/chances/voltorb.png" class="cell chances_cell" row="1"  col="2">
+                    <img id="cg13" src="resources/chances/voltorb.png" class="cell chances_cell" row="1"  col="3">
+                    <img id="cg14" src="resources/chances/voltorb.png" class="cell chances_cell" row="1"  col="4">
+                    <img id="cg20" src="resources/chances/voltorb.png" class="cell chances_cell" row="2"  col="0">
+                    <img id="cg21" src="resources/chances/voltorb.png" class="cell chances_cell" row="2"  col="1">
+                    <img id="cg22" src="resources/chances/voltorb.png" class="cell chances_cell" row="2"  col="2">
+                    <img id="cg23" src="resources/chances/voltorb.png" class="cell chances_cell" row="2"  col="3">
+                    <img id="cg24" src="resources/chances/voltorb.png" class="cell chances_cell" row="2"  col="4">
+                    <img id="cg30" src="resources/chances/voltorb.png" class="cell chances_cell" row="3"  col="0">
+                    <img id="cg31" src="resources/chances/voltorb.png" class="cell chances_cell" row="3"  col="1">
+                    <img id="cg32" src="resources/chances/voltorb.png" class="cell chances_cell" row="3"  col="2">
+                    <img id="cg33" src="resources/chances/voltorb.png" class="cell chances_cell" row="3"  col="3">
+                    <img id="cg34" src="resources/chances/voltorb.png" class="cell chances_cell" row="3"  col="4">
+                    <img id="cg40" src="resources/chances/voltorb.png" class="cell chances_cell" row="4"  col="0">
+                    <img id="cg41" src="resources/chances/voltorb.png" class="cell chances_cell" row="4"  col="1">
+                    <img id="cg42" src="resources/chances/voltorb.png" class="cell chances_cell" row="4"  col="2">
+                    <img id="cg43" src="resources/chances/voltorb.png" class="cell chances_cell" row="4"  col="3">
+                    <img id="cg44" src="resources/chances/voltorb.png" class="cell chances_cell" row="4"  col="4">
+                    <div id="cg00_coin" class="cell coin_mask" row="0" col="0"></div>
+                    <div id="cg01_coin" class="cell coin_mask" row="0" col="1"></div>
+                    <div id="cg02_coin" class="cell coin_mask" row="0" col="2"></div>
+                    <div id="cg03_coin" class="cell coin_mask" row="0" col="3"></div>
+                    <div id="cg04_coin" class="cell coin_mask" row="0" col="4"></div>
+                    <div id="cg10_coin" class="cell coin_mask" row="1" col="0"></div>
+                    <div id="cg11_coin" class="cell coin_mask" row="1" col="1"></div>
+                    <div id="cg12_coin" class="cell coin_mask" row="1" col="2"></div>
+                    <div id="cg13_coin" class="cell coin_mask" row="1" col="3"></div>
+                    <div id="cg14_coin" class="cell coin_mask" row="1" col="4"></div>
+                    <div id="cg20_coin" class="cell coin_mask" row="2" col="0"></div>
+                    <div id="cg21_coin" class="cell coin_mask" row="2" col="1"></div>
+                    <div id="cg22_coin" class="cell coin_mask" row="2" col="2"></div>
+                    <div id="cg23_coin" class="cell coin_mask" row="2" col="3"></div>
+                    <div id="cg24_coin" class="cell coin_mask" row="2" col="4"></div>
+                    <div id="cg30_coin" class="cell coin_mask" row="3" col="0"></div>
+                    <div id="cg31_coin" class="cell coin_mask" row="3" col="1"></div>
+                    <div id="cg32_coin" class="cell coin_mask" row="3" col="2"></div>
+                    <div id="cg33_coin" class="cell coin_mask" row="3" col="3"></div>
+                    <div id="cg34_coin" class="cell coin_mask" row="3" col="4"></div>
+                    <div id="cg40_coin" class="cell coin_mask" row="4" col="0"></div>
+                    <div id="cg41_coin" class="cell coin_mask" row="4" col="1"></div>
+                    <div id="cg42_coin" class="cell coin_mask" row="4" col="2"></div>
+                    <div id="cg43_coin" class="cell coin_mask" row="4" col="3"></div>
+                    <div id="cg44_coin" class="cell coin_mask" row="4" col="4"></div>
+                    <span id="cgmr0" class="gsum multsum cmr">0</span>
+                    <span id="cgmr1" class="gsum multsum cmr">0</span>
+                    <span id="cgmr2" class="gsum multsum cmr">0</span>
+                    <span id="cgmr3" class="gsum multsum cmr">0</span>
+                    <span id="cgmr4" class="gsum multsum cmr">0</span>
+                    <span id="cgmc0" class="gsum multsum cmc">0</span>
+                    <span id="cgmc1" class="gsum multsum cmc">0</span>
+                    <span id="cgmc2" class="gsum multsum cmc">0</span>
+                    <span id="cgmc3" class="gsum multsum cmc">0</span>
+                    <span id="cgmc4" class="gsum multsum cmc">0</span>
+                    <span id="cgvr0" class="gsum voltsum cvr">0</span>
+                    <span id="cgvr1" class="gsum voltsum cvr">0</span>
+                    <span id="cgvr2" class="gsum voltsum cvr">0</span>
+                    <span id="cgvr3" class="gsum voltsum cvr">0</span>
+                    <span id="cgvr4" class="gsum voltsum cvr">0</span>
+                    <span id="cgvc0" class="gsum voltsum cvc">0</span>
+                    <span id="cgvc1" class="gsum voltsum cvc">0</span>
+                    <span id="cgvc2" class="gsum voltsum cvc">0</span>
+                    <span id="cgvc3" class="gsum voltsum cvc">0</span>
+                    <span id="cgvc4" class="gsum voltsum cvc">0</span>
+                </div>
+                
+                <!-- solutions tab -->
+                <div id="solutions_tab" class="tabcontent">
+                    Solutions stuff here
+                </div>
+                
+                <!-- menu buttons -->
+                <div id="input_button" class="gg_button menu_button" opens="input_tab">
+                    <span class="gg_button_text">Input</span>
+                    <img src="resources/page/input_button.png">
+                </div>
+                <div id="chances_button" class="gg_button menu_button" opens="chances_tab">
+                    <span class="gg_button_text">Chance</span>
+                    <img src="resources/page/probabilities_button.png">
+                </div>
+                <div id="solutions_button" class="gg_button menu_button" opens="solutions_tab">
+                    <span class="gg_button_text">Solutions</span>
+                    <img src="resources/page/solutions_button.png">
+                </div>
+                <div id="action_button" class="gg_button">
+                    <span id="action_button_text" class="gg_button_text">Solve!</span>
+                    <img src="resources/input/action_button.png">
+                </div>
+            </div>
+            <div id="progress_container">
+                <div id="progress_background"></div>
+                <div id="progress_bar"></div>
+                <div id="progress_foreground">0% Progress. Fill in the sums and click Solve!</div>
+            </div>
+            <div id="messages_container">
+                <span>Suggestions and Messages</span>
+                <div id="messages"></div>
+            </div>
+            <div id="about_container">
+                <h2>Instructions</h2><hr>
+                <p>
+                    <b>Voltorb Freedom! is easy to use. To start:</b>
+                    <ol>
+                        <li>Set the Voltorb counts and coin sums given to you by the puzzle.</li>
+                        <li>Press Solve!</li>
+                    </ol>
+                    <b>While the solver is running...</b>
+                    <ul>
+                        <li>
+                            Inspect the chances that a given
+                            cell contains either a coin or Voltorb by clicking on the "Chance"
+                            tab. Every time the solver finds a new feasible solution, it will
+                            update the cell probabilities.
+                        </li>
+                        <li>
+                            View feasible answers to the puzzle in the "Solutions"
+                            tab. Maybe you see a pattern the solver doesn't and can make a choice
+                            before it finishes.
+                        </li>
+                        <li>
+                            If you figure out some cells while the solver is running, you can
+                            hit "Stop!", flip the cells in the "Input" tab and start it up again.
+                            This will narrow down the feasible answers the solver needs to look
+                            for and give you more specific suggestions when it finishes.
+                        </li>
+                        <li>
+                            If the solver figures out some cells while it is running, they will
+                            be updated in the "Input" tab. No need to wait until the end to
+                            keep playing!
+                        </li>
+                        <li>
+                            See how close the solver is to finishing in the progress bar below
+                            the puzzle grid.
+                        </li>
+                    </ul>
+                    <b>After the solver finishes</b>
+                    <ul>
+                        <li>
+                            Voltorb Flip! will make suggestions for your next move in the
+                            "Suggestions and Messages" box. It's up to you to decide which
+                            cell you'll flip next.
+                        </li>
+                        <li>
+                            Flip one or more cells in Pokemon and then update the contents in 
+                            the "Input" tab of Voltorb Freedom! Press "Solve!" to run the solver
+                            again and get updated suggestions for cells to flip.
+                        </li>
+                        <li> 
+                            Voltorb Freedom can run with known Voltorbs (e.g. if you're running on
+                            an emulator and are using the calculator to speed up your games).
+                        </li>
+                    </ul>
+                </p>
+                <br>
+                <h2>What is Voltorb Freedom?</h2><hr>
+                <p>
+                    Voltorb Freedom is a solver for Voltorb Flip, a Minesweeper-like minigame 
+                    in Pokemon SoulSilver and HeartGold. Voltorb Flip is a game of chance:
+                    for every puzzle, there ~1 Quadrillion (1&times;10<sup>15</sup>) 
+                    possible answers, of which up to Billions or Trillions may be feasible (they
+                    satisfy the puzzle's Voltorb counts and Coin sums). Of those, only one
+                    is the actual answer to the puzzle in the minigame.
+                </p>
+                <p>
+                    Other Voltorb Flip calculators use basic logic to suggest your next move. 
+                    What sets Voltorb Freedom apart is that it finds every feasible answer to
+                    a given puzzle and gives you the freedom to decide what to do with that
+                    information. Would you rather flip the highest-probability cell or 
+                    choose the one with the greater reward or the one with the lowest chance of
+                    having a Voltorb? Other calculators decide for you. Voltorb Freedom lets
+                    you choose.
+                </p>
+                The Voltorb Freedom! solver is the intellectual property of Austin Milt. 
+                Voltorb Flip, including
+            </div>
+        </div>
+    </body>
+</html>
