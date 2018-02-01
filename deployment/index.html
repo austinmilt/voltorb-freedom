@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Voltorb Flip Solver</title>
+        <title>Voltorb Freedom! (Voltorb Flip Solver)</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
         <script src="scripts/main.js"></script>
         <script src="scripts/worker.js"></script>
     </head>
@@ -142,7 +159,55 @@
                 
                 <!-- solutions tab -->
                 <div id="solutions_tab" class="tabcontent">
-                    Solutions stuff here
+                    <img id="sg00" src="resources/input/UNKNOWN.png" class="cell" row="0" col="0">
+                    <img id="sg01" src="resources/input/UNKNOWN.png" class="cell" row="0" col="1">
+                    <img id="sg02" src="resources/input/UNKNOWN.png" class="cell" row="0" col="2">
+                    <img id="sg03" src="resources/input/UNKNOWN.png" class="cell" row="0" col="3">
+                    <img id="sg04" src="resources/input/UNKNOWN.png" class="cell" row="0" col="4">
+                    <img id="sg10" src="resources/input/UNKNOWN.png" class="cell" row="1"  col="0">
+                    <img id="sg11" src="resources/input/UNKNOWN.png" class="cell" row="1"  col="1">
+                    <img id="sg12" src="resources/input/UNKNOWN.png" class="cell" row="1"  col="2">
+                    <img id="sg13" src="resources/input/UNKNOWN.png" class="cell" row="1"  col="3">
+                    <img id="sg14" src="resources/input/UNKNOWN.png" class="cell" row="1"  col="4">
+                    <img id="sg20" src="resources/input/UNKNOWN.png" class="cell" row="2"  col="0">
+                    <img id="sg21" src="resources/input/UNKNOWN.png" class="cell" row="2"  col="1">
+                    <img id="sg22" src="resources/input/UNKNOWN.png" class="cell" row="2"  col="2">
+                    <img id="sg23" src="resources/input/UNKNOWN.png" class="cell" row="2"  col="3">
+                    <img id="sg24" src="resources/input/UNKNOWN.png" class="cell" row="2"  col="4">
+                    <img id="sg30" src="resources/input/UNKNOWN.png" class="cell" row="3"  col="0">
+                    <img id="sg31" src="resources/input/UNKNOWN.png" class="cell" row="3"  col="1">
+                    <img id="sg32" src="resources/input/UNKNOWN.png" class="cell" row="3"  col="2">
+                    <img id="sg33" src="resources/input/UNKNOWN.png" class="cell" row="3"  col="3">
+                    <img id="sg34" src="resources/input/UNKNOWN.png" class="cell" row="3"  col="4">
+                    <img id="sg40" src="resources/input/UNKNOWN.png" class="cell" row="4"  col="0">
+                    <img id="sg41" src="resources/input/UNKNOWN.png" class="cell" row="4"  col="1">
+                    <img id="sg42" src="resources/input/UNKNOWN.png" class="cell" row="4"  col="2">
+                    <img id="sg43" src="resources/input/UNKNOWN.png" class="cell" row="4"  col="3">
+                    <img id="sg44" src="resources/input/UNKNOWN.png" class="cell" row="4"  col="4">
+                    <span id="sgmr0" class="gsum multsum cmr">0</span>
+                    <span id="sgmr1" class="gsum multsum cmr">0</span>
+                    <span id="sgmr2" class="gsum multsum cmr">0</span>
+                    <span id="sgmr3" class="gsum multsum cmr">0</span>
+                    <span id="sgmr4" class="gsum multsum cmr">0</span>
+                    <span id="sgmc0" class="gsum multsum cmc">0</span>
+                    <span id="sgmc1" class="gsum multsum cmc">0</span>
+                    <span id="sgmc2" class="gsum multsum cmc">0</span>
+                    <span id="sgmc3" class="gsum multsum cmc">0</span>
+                    <span id="sgmc4" class="gsum multsum cmc">0</span>
+                    <span id="sgvr0" class="gsum voltsum cvr">0</span>
+                    <span id="sgvr1" class="gsum voltsum cvr">0</span>
+                    <span id="sgvr2" class="gsum voltsum cvr">0</span>
+                    <span id="sgvr3" class="gsum voltsum cvr">0</span>
+                    <span id="sgvr4" class="gsum voltsum cvr">0</span>
+                    <span id="sgvc0" class="gsum voltsum cvc">0</span>
+                    <span id="sgvc1" class="gsum voltsum cvc">0</span>
+                    <span id="sgvc2" class="gsum voltsum cvc">0</span>
+                    <span id="sgvc3" class="gsum voltsum cvc">0</span>
+                    <span id="sgvc4" class="gsum voltsum cvc">0</span>
+                    <div id="solutions_tracker_container">
+                        Solutions
+                        <div id="solutions_tracker"><table><tr id="solutions_table"></tr></table></div>
+                    </div>
                 </div>
                 
                 <!-- menu buttons -->
@@ -226,6 +291,8 @@
                             an emulator and are using the calculator to speed up your games).
                         </li>
                     </ul>
+                    For more help or to make suggestions, submit a new "issue" on 
+                    <a href="https://github.com/austinmilt/voltorb-freedom" target="_blank">github</a>.
                 </p>
                 <br>
                 <h2>What is Voltorb Freedom?</h2><hr>
@@ -246,8 +313,11 @@
                     having a Voltorb? Other calculators decide for you. Voltorb Freedom lets
                     you choose.
                 </p>
-                The Voltorb Freedom! solver is the intellectual property of Austin Milt. 
-                Voltorb Flip, including
+                    &copy; 2018 <a href="https://github.com/austinmilt/voltorb-freedom" target="_blank">Austin Milt</a>. 
+                    The Voltorb Freedom! solver is the intellectual property of Austin Milt. 
+                    Voltorb Flip, including any images from the Pokemon games, are property of
+                    Nintendo.
+                <p>   
             </div>
         </div>
     </body>

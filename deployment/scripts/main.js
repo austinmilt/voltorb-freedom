@@ -34,6 +34,18 @@ const CIJ2ID = {
     4: {0: 'cg40_coin', 1: 'cg41_coin', 2: 'cg42_coin', 3: 'cg43_coin', 4: 'cg44_coin'},
 }
 
+const SMR2ID = {0: 'sgmr0', 1: 'sgmr1', 2: 'sgmr2', 3: 'sgmr3', 4: 'sgmr4'};
+const SMC2ID = {0: 'sgmc0', 1: 'sgmc1', 2: 'sgmc2', 3: 'sgmc3', 4: 'sgmc4'};
+const SVR2ID = {0: 'sgvr0', 1: 'sgvr1', 2: 'sgvr2', 3: 'sgvr3', 4: 'sgvr4'};
+const SVC2ID = {0: 'sgvc0', 1: 'sgvc1', 2: 'sgvc2', 3: 'sgvc3', 4: 'sgvc4'};
+const SIJ2ID = {
+    0: {0: 'sg00', 1: 'sg01', 2: 'sg02', 3: 'sg03', 4: 'sg04'},
+    1: {0: 'sg10', 1: 'sg11', 2: 'sg12', 3: 'sg13', 4: 'sg14'},
+    2: {0: 'sg20', 1: 'sg21', 2: 'sg22', 3: 'sg23', 4: 'sg24'},
+    3: {0: 'sg30', 1: 'sg31', 2: 'sg32', 3: 'sg33', 4: 'sg34'},
+    4: {0: 'sg40', 1: 'sg41', 2: 'sg42', 3: 'sg43', 4: 'sg44'},
+}
+
 const ID_IMAGES = {};
 ID_IMAGES[UNKNOWN] = 'resources/input/UNKNOWN.png';
 ID_IMAGES[VOLTORB] = 'resources/input/VOLTORB.png';
@@ -58,6 +70,10 @@ function set_chance_cell(elem, prop) {
     elem.style.width = `calc(8.47%*${1-prop})`;
 }
 
+function set_solution_cell(elem, id) {
+    elem.src = ID_IMAGES[id];
+}
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
     
@@ -67,11 +83,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var VR = {};
     var VC = {};
     var IJ = {};
+    
     var CMR = {};
     var CMC = {};
     var CVR = {};
     var CVC = {};
     var CIJ = {};
+    
+    var SMR = {};
+    var SMC = {};
+    var SVR = {};
+    var SVC = {};
+    var SIJ = {};
+    
     var chances = {};
     var solutions = [];
     for (var i = 0; i < ROWS; i++) {
@@ -81,6 +105,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         CMR[i] = document.getElementById(CMR2ID[i]);
         CVR[i] = document.getElementById(CVR2ID[i]);
         CIJ[i] = {};
+        SMR[i] = document.getElementById(SMR2ID[i]);
+        SVR[i] = document.getElementById(SVR2ID[i]);
+        SIJ[i] = {};
         chances[i] = {};
         for (var j = 0; j < COLUMNS; j++) {
             if (i == 0) {
@@ -88,6 +115,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 VC[j] = document.getElementById(VC2ID[j]);
                 CMC[j] = document.getElementById(CMC2ID[j]);
                 CVC[j] = document.getElementById(CVC2ID[j]);
+                SMC[j] = document.getElementById(SMC2ID[j]);
+                SVC[j] = document.getElementById(SVC2ID[j]);
             }
             
             // set up the cell flipping callbacks
@@ -103,6 +132,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             CIJ[i][j] = cell;
             set_chance_cell(cell, 0);
             chances[i][j] = 0;
+            
+            // assign the solutions grid elements
+            var cell = document.getElementById(SIJ2ID[i][j]);
+            SIJ[i][j] = cell;
+            set_solution_cell(cell, UNKNOWN);
         }
     }
     
@@ -164,6 +198,48 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     
+    function update_solutions_grid(solution, clear=false) {
+        for (var i = 0; i < ROWS; i++) {
+            for (var j = 0; j < COLUMNS; j++) {
+                if (clear) { set_solution_cell(SIJ[i][j], UNKNOWN); }
+                else { set_solution_cell(SIJ[i][j], solution[i][j]); }
+            }
+        }
+    }
+    
+    function update_solutions_sums() {
+       for (var i = 0; i < ROWS; i++) {
+            SMR[i].innerText = MR[i].value;
+            SVR[i].innerText = VR[i].value;
+        }
+        for (var j = 0; j < COLUMNS; j++) {
+            SMC[j].innerText = MC[j].value;
+            SVC[j].innerText = VC[j].value;
+        } 
+    }
+    
+    var solutionsTable = document.getElementById('solutions_table');
+    var solTableClicked = null;
+    function add_solution_to_table(solution, i) {
+        var clickable = document.createElement('td');
+        clickable.innerText = i;
+        clickable.addEventListener('click', function() {
+            var i = parseInt(this.innerText);
+            if (solTableClicked) { solTableClicked.classList.remove('clicked'); }
+            this.classList.add('clicked');
+            update_solutions_grid(solutions[i]);
+            solTableClicked = this;
+        });
+        solutionsTable.appendChild(clickable);
+    }
+    
+    function popuplate_solutions_list() {
+        solutionsTable.innerHTML = '';
+        for (var i = 0; i < solutions.length; i++) {
+            add_solution_to_table(solutions[i], i);
+        }
+    }
+    
     
     // function for printing messages 
     var running = false;
@@ -180,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 nPrintout -= 1;
             }
             var newMessage = document.createElement('span');
-            newMessage.innerHTML = '<br>' + msg;
+            newMessage.innerHTML = msg + '<br>';
             messagesElem.appendChild(newMessage);
             nPrintout += 1;
         }
@@ -202,6 +278,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         else if (tabID != activeTab) {
             if (activeTab) { document.getElementById(activeTab).style.display = 'none'; }
             if (tabID == 'chances_tab') { update_chances_sums(); update_chances_grid(); }
+            else if (tabID == 'solutions_tab') {
+                update_solutions_sums();
+                popuplate_solutions_list(); 
+                if ((solutions.length > 0) && (solTableClicked)) { solTableClicked.dispatchEvent(new Event('click')); }
+            }
             document.getElementById(tabID).style.display = 'inline';
             activeTab = tabID;
         }
@@ -219,21 +300,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
             this.classList.add('bfocus');
         });
     }
+
+    
+    // set stuff in main when the worker finishes
+    var worker = null;
+    function stop() {
+        if (worker) { worker.terminate(); }
+        running = false;
+        document.getElementById('action_button_text').innerText = 'Solve!';
+        finishMessages = true;
+    }
     
     // callback for start button
-    var worker = null;
     var progressText = document.getElementById('progress_foreground');
     var progressBar = document.getElementById('progress_bar');
     var actionButton = document.getElementById('action_button');
     function start_worker() {
-        if (running) {
-            finishMessages = true;
-            if (worker) {
-                worker.terminate(); 
-                running = false; 
-                document.getElementById('action_button_text').innerText = 'Solve!';
-            }
-        }
+        if (running) { stop(); }
         else {
             
             // start the message consumer
@@ -270,42 +353,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     var solution = msg.data;
                     solutions2.push(solution);
                     update_chances(solution);
+                    add_solution_to_table(solution, solutions.length-1);
                     if (activeTab == 'chances_tab') { update_chances_grid(); }
-                }
-                else if (msg.type == 'solutions') {
-                    var html = '';
-                    var solutions = msg.data;
-                    for (var s = 0; s < solutions.length; s++) {
-                        var solution = solutions[s];
-                        html += `<br><br>Solution ${s+1}:`;
-                        for (var i = 0; i < ROWS; i++) {
-                            var row = [];
-                            for (var j = 0; j < COLUMNS; j++) { row.push(solution[i][j]); }
-                            html += '<br>' + row.join(' ');
-                        }
-                    }
-                    // document.getElementById('solutions').innerHTML = html;
                 }
                 else if (msg.type == 'prompt_cell_id') {
                     
                     // get the cell value and start over
                     open_tab(null, 'input_button');
                     var answer = prompt(msg.message);
-                    if (!answer) { document.getElementById('action_button_text').innerText = 'Solve!'; return; }
-                    if (ID_IMAGES.hasOwnProperty(answer)) { set_cell(IJ[msg.i][msg.j], answer); }
-                    worker.terminate();
-                    running = false;
-                    start_worker();
+                    if (!answer) { stop(); }
+                    else {
+                        if (ID_IMAGES.hasOwnProperty(answer)) { set_cell(IJ[msg.i][msg.j], answer); }
+                        stop();
+                        start_worker();
+                    }
                 }
                 else if (msg.type == 'resolve') {
                     progressBar.style.width = '0%';
                     solutions2 = [];
+                    solTableClicked = null;
                     update_chances(null, true);
+                    update_solutions_grid(null, true);
                     if (activeTab == 'chances_tab') { update_chances_grid(); }
                 }
                 else if (msg.type == 'finished') {
                     progressBar.style.width = '100%';
-                    document.getElementById('action_button_text').innerText = 'Solve!';
+                    stop();
                 }
                 
             }
