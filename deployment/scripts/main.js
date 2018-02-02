@@ -176,6 +176,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     
+    
+    // update the grid cells in the chances tab
     function update_chances_grid() {
         var nsol = solutions.length;
         for (var i = 0; i < ROWS; i++) {
@@ -187,6 +189,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     
+    
+    // update the row and column sums in the chances tab
     function update_chances_sums() {
         for (var i = 0; i < ROWS; i++) {
             CMR[i].innerText = MR[i].value;
@@ -198,6 +202,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     
+    
+    // update the grid image in the solutions tab
     function update_solutions_grid(solution, clear=false) {
         for (var i = 0; i < ROWS; i++) {
             for (var j = 0; j < COLUMNS; j++) {
@@ -207,6 +213,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     
+    
+    // update the row and column sums in the solutions tab
     function update_solutions_sums() {
        for (var i = 0; i < ROWS; i++) {
             SMR[i].innerText = MR[i].value;
@@ -218,6 +226,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         } 
     }
     
+    
+    // add a single solution to the solutions list table
     var solutionsTable = document.getElementById('solutions_table');
     var solTableClicked = null;
     function add_solution_to_table(solution, i) {
@@ -233,6 +243,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         solutionsTable.appendChild(clickable);
     }
     
+    
+    // fill in the solutions list table
     function popuplate_solutions_list() {
         solutionsTable.innerHTML = '';
         for (var i = 0; i < solutions.length; i++) {
@@ -268,6 +280,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // open one of the content tabs 
     var activeTab = null;
     function open_tab(tabID=null, buttonID=null) {
+        
+        // open the tab of the given button
         if (tabID === null) {
             if (buttonID === null) { throw new Error('Invalid arguments to open_tab().'); }
             var button = document.getElementById(buttonID);
@@ -275,13 +289,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
             for (var b2 of document.getElementsByClassName('menu_button')) { b2.classList.remove('bfocus'); }
             button.classList.add('bfocus');
         }
+        
+        // open the given tab
         else if (tabID != activeTab) {
             if (activeTab) { document.getElementById(activeTab).style.display = 'none'; }
             if (tabID == 'chances_tab') { update_chances_sums(); update_chances_grid(); }
             else if (tabID == 'solutions_tab') {
                 update_solutions_sums();
                 popuplate_solutions_list(); 
-                if ((solutions.length > 0) && (solTableClicked)) { solTableClicked.dispatchEvent(new Event('click')); }
+                if ((solutions.length > 0) && (solTableClicked)) {
+                    solTableClicked.dispatchEvent(new Event('click')); 
+                    solTableClicked.classList.add('clicked');
+                }
             }
             document.getElementById(tabID).style.display = 'inline';
             activeTab = tabID;
@@ -310,6 +329,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.getElementById('action_button_text').innerText = 'Solve!';
         finishMessages = true;
     }
+    
     
     // callback for start button
     var progressText = document.getElementById('progress_foreground');
@@ -391,6 +411,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     actionButton.addEventListener('click', start_worker);
+    
+    
+    // callback for reset button
+    var resetButton = document.getElementById('reset_button');
+    resetButton.addEventListener('click', function() {
+        if (running) { stop(); }
+        solutions = [];
+        solTableClicked = null;
+        update_chances(null, true);
+        update_chances_grid();
+        update_solutions_grid(null, true);
+        for (var i = 0; i < ROWS; i++) {
+            MR[i].value = 0;
+            VR[i].value = 0;
+            for (var j = 0; j < COLUMNS; j++) {
+                if (i == 0) {
+                    MC[j].value = 0;
+                    VC[j].value = 0;
+                }
+                set_cell(IJ[i][j], UNKNOWN);
+            }
+        }
+        update_chances_sums();
+        update_solutions_sums();
+        progressText.innerText = '0% Progress. Fill in the sums and click Solve!';
+    });
 });
 
 })();

@@ -780,7 +780,6 @@ function solve(grid, doPresolve=true) {
             }
         }
         else {
-            postMessage({'type': 'message', 'message': 'Not sure of anything. Printing all post-optimization probabilities, ranked by increasing probability of Voltorb.'});
             var printOrder = grid.list_cells().sort(function(k1, k2) { return probs[k1.i][k1.j][VOLTORB] - probs[k2.i][k2.j][VOLTORB] });
             for (var cell of printOrder) {
                 if (cell.is(UNKNOWN)) {
@@ -788,10 +787,14 @@ function solve(grid, doPresolve=true) {
                     for (var id of IDS) {
                         if (id !== UNKNOWN) {
                             msg = ['  ', parseInt(probs[cell.i][cell.j][id]), 'chance to be', id].join(' ');
-                            postMessage({'type': 'message', 'message': msg});
+                            suggestions.push(msg);
                         }
                     }
                 }
+            }
+            if (suggestions.length > 0) {
+                postMessage({'type': 'message', 'message': 'Not sure of anything. Printing all unknown post-optimization probabilities, ranked by increasing probability of Voltorb.'});
+                for (var suggestion of suggestions) { postMessage({'type': 'message', 'message': suggestion}); }
             }
         }
     }

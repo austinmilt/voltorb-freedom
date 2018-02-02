@@ -22,7 +22,7 @@
         <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <script src="scripts/main.js"></script>
-        <script src="scripts/worker.js"></script>
+        <!-- <script src="scripts/worker.js"></script> -->
     </head>
 
     <body>
@@ -205,26 +205,30 @@
                     <span id="sgvc3" class="gsum voltsum cvc">0</span>
                     <span id="sgvc4" class="gsum voltsum cvc">0</span>
                     <div id="solutions_tracker_container">
-                        Solutions
+                        Answers
                         <div id="solutions_tracker"><table><tr id="solutions_table"></tr></table></div>
                     </div>
                 </div>
                 
                 <!-- menu buttons -->
-                <div id="input_button" class="gg_button menu_button" opens="input_tab">
+                <div id="input_button" class="gg_button menu_button" opens="input_tab" title="Give Voltorb Freedom a puzzle to solve and set it running!">
                     <span class="gg_button_text">Input</span>
                     <img src="resources/page/input_button.png" draggable="false">
                 </div>
-                <div id="chances_button" class="gg_button menu_button" opens="chances_tab">
+                <div id="chances_button" class="gg_button menu_button" opens="chances_tab" title="Inspect the probability that each cell contains either a coin multiplier or a Voltorb.">
                     <span class="gg_button_text">Chance</span>
                     <img src="resources/page/probabilities_button.png" draggable="false">
                 </div>
-                <div id="solutions_button" class="gg_button menu_button" opens="solutions_tab">
-                    <span class="gg_button_text">Solutions</span>
+                <div id="solutions_button" class="gg_button menu_button" opens="solutions_tab" title="Inspect answers to the puzzle as they are found.">
+                    <span class="gg_button_text">Answers</span>
                     <img src="resources/page/solutions_button.png" draggable="false">
                 </div>
                 <div id="action_button" class="gg_button">
                     <span id="action_button_text" class="gg_button_text">Solve!</span>
+                    <img src="resources/input/action_button.png" draggable="false">
+                </div>
+                <div id="reset_button" class="gg_button">
+                    <span class="gg_button_text">Reset</span>
                     <img src="resources/input/action_button.png" draggable="false">
                 </div>
             </div>
@@ -254,7 +258,7 @@
                             update the cell probabilities.
                         </li>
                         <li>
-                            View feasible answers to the puzzle in the "Solutions"
+                            View feasible answers to the puzzle in the "Answers"
                             tab. Maybe you see a pattern the solver doesn't and can make a choice
                             before it finishes.
                         </li>
